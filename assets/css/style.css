@@ -670,9 +670,35 @@ html:not(.js-ready) .floating-cta { opacity: 1; pointer-events: auto; }
 .contact-panel__form input[type="submit"] { margin-top: var(--sp-2); width: 100%; padding: 11px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); border-radius: var(--radius-pill); background: var(--color-action-primary); color: #fff; border: 1.5px solid transparent; box-shadow: var(--shadow-hero); transition: var(--ease-base); }
 .contact-panel__form input[type="submit"]:hover { background: var(--color-action-hover); transform: translateY(-2px); }
 .contact-panel__form .wpcf7-not-valid-tip { font-size: 10.5px; color: #b23; }
-/* reCAPTCHA v2's iframe widget renders its own white card + shadow (Google's UI, not ours) — strip our field-grey background and border so it doesn't look like a second card stacked behind it. */
-.contact-panel__scroll .wpcf7-form > p:has(.g-recaptcha),
-.join-form-card .wpcf7-form > p:has(.g-recaptcha) { background: none; border: none; padding: 0; margin: var(--sp-2) 0; display: flex; justify-content: center; }
+/* reCAPTCHA v2's widget renders its own white card + shadow (Google's UI, not ours) — strip our field-grey background so it doesn't look like a second card stacked behind it. CF7 wraps it in <span class="wpcf7-form-control-wrap recaptcha">, not a <p> like other fields. */
+.contact-panel__scroll .wpcf7-form-control-wrap.recaptcha,
+.join-form-card .wpcf7-form-control-wrap.recaptcha { background: none; border: none; padding: 0; margin: var(--sp-2) 0; display: flex; justify-content: center; }
+/* CF7 also tags the recaptcha span itself with .wpcf7-form-control — the
+   same class our text-input styling below targets — so it was inheriting
+   the grey background/border/padding meant for text fields, showing as a
+   card stacked behind the widget. Reset it back to nothing here. */
+.contact-panel__scroll .g-recaptcha,
+.join-form-card .g-recaptcha { background: none !important; border: none !important; padding: 0 !important; }
+/* The popup card is only ~272px wide inside its padding — narrower than
+   Google's fixed 304x78px reCAPTCHA widget. .g-recaptcha gets an explicit
+   box at the target visual size (85% of native) — this is the box that
+   actually gets centered by the flex rule above, cleanly, no margin math.
+   The real fixed-size element is an unclassed <div style="width:304px;
+   height:78px"> one level inside .g-recaptcha; it's scaled down to fill
+   that box via transform (anchored top-left), with overflow:hidden as a
+   safety net for any sub-pixel rounding. !important is needed because
+   Google's own script sets width/height as inline styles, which otherwise
+   always win over an external stylesheet. */
+.contact-panel__scroll .g-recaptcha {
+  display: block !important;
+  width: 258px !important;
+  height: 66px !important;
+  overflow: hidden !important;
+}
+.contact-panel__scroll .g-recaptcha > div {
+  transform: scale(0.85) !important;
+  transform-origin: 0 0 !important;
+}
 .contact-panel__form .wpcf7-response-output { font-size: 11px; border-radius: var(--radius-md); margin: 0; padding: var(--sp-2) var(--sp-3); }
 
 /* DOMAIN: Empty-state placeholders — shown in Services/Blog/Testimonials only until real content (CPT posts, blog posts, Google reviews) exists. Same card shape/size as the real content, no filler copy. */
