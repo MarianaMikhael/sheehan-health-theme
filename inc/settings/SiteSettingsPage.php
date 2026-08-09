@@ -76,6 +76,7 @@ class SiteSettingsPage {
 			// -- General tab: Site-wide Images -------------------------------
 			array( 'id' => 'sheehan_logo_nav', 'label' => 'Nav logo', 'desc' => 'Cursive signature only, used in the top menu. Shown white automatically.', 'section' => 'images_global', 'type' => 'image' ),
 			array( 'id' => 'sheehan_logo_footer', 'label' => 'Footer logo', 'desc' => 'Signature + "Nurse Consultancy" text, used in the footer. Shown white automatically.', 'section' => 'images_global', 'type' => 'image' ),
+			array( 'id' => 'sheehan_login_logo', 'label' => 'Login page logo', 'desc' => 'Cursive signature only, used on the wp-admin login screen. Shown in its true colour (not forced white like the nav logo).', 'section' => 'images_global', 'type' => 'image' ),
 			// -- General tab: Integrations (sitewide) -----------------------
 			array( 'id' => 'sheehan_ga_id', 'label' => 'Google Analytics ID', 'desc' => 'Your GA4 measurement ID.', 'section' => 'integrations', 'type' => 'text', 'default' => 'G-EMP6WLNHMV' ),
 			array( 'id' => 'sheehan_meta_pixel_id', 'label' => 'Meta Pixel ID', 'desc' => 'Used for Facebook/Instagram ad tracking.', 'section' => 'integrations', 'type' => 'text', 'default' => '1076524434707182' ),

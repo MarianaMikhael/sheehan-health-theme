@@ -17,10 +17,10 @@ class LoginBranding {
 	}
 
 	public static function styles() {
-		// Reuses the same "Nav logo" upload as the header — shown here in its
+		// Dedicated image, independent from the nav logo — shown here in its
 		// true/original colour (no filter) since the login screen has a light
 		// background, unlike the header where CSS forces it white.
-		$logo = theme_image_url( 'sheehan_logo_nav', 'placeholder-logo-mark.svg' );
+		$logo = theme_image_url( 'sheehan_login_logo', 'placeholder-logo-mark.svg' );
 		?>
 		<style>
 			body.login {
