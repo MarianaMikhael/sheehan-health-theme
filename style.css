@@ -1,0 +1,10 @@
+/*
+Theme Name: Sheehan Health
+Theme URI: https://sheehanhealth.com.au
+Author: Sheehan Health
+Author URI: https://sheehanhealth.com.au
+Description: Custom WordPress theme for Sheehan Health, an NDIS nurse consultancy in NSW, Australia. Domain-driven structure: config/CPT/settings/integrations kept as separate bounded contexts under inc/, presentation split into template-parts/, all visual styling in assets/css/style.css.
+Version: 1.0.0
+Requires PHP: 7.4
+Text Domain: sheehan-health
+*/
